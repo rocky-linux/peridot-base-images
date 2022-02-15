@@ -24,13 +24,17 @@ jobs:
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_ROBOT_TOKEN }}
 
+      - name: Set Docker tags
+        run: |
+          echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
       - name: Build and push Bazel/Go
         uses: docker/build-push-action@v2
         with:
           context: bazel/go
           platforms: linux/amd64,linux/arm64/v8
           push: true
-          tags: quay.io/peridot/bazel-go:${GITHUB_REF#refs/tags/}
+          tags: quay.io/peridot/bazel-go:${{ env.tag }}
       
       - name: Build and push Bazel/Node
         uses: docker/build-push-action@v2
@@ -38,7 +42,7 @@ jobs:
           context: bazel/node
           platforms: linux/amd64,linux/arm64/v8
           push: true
-          tags: quay.io/peridot/bazel-node:${GITHUB_REF#refs/tags/}
+          tags: quay.io/peridot/bazel-node:${{ env.tag }}
       
       - name: Build and push Build
         uses: docker/build-push-action@v2
@@ -46,4 +50,4 @@ jobs:
           context: build
           platforms: linux/amd64,linux/arm64/v8
           push: true
-          tags: quay.io/peridot/build-base:${GITHUB_REF#refs/tags/}
+          tags: quay.io/peridot/build-base:${{ env.tag }}
