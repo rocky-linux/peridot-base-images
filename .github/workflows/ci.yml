@@ -44,10 +44,18 @@ jobs:
           push: true
           tags: quay.io/peridot/bazel-node:${{ env.tag }}
       
-      - name: Build and push Build
+      - name: Build and push Build Base
         uses: docker/build-push-action@v2
         with:
           context: build
           platforms: linux/amd64,linux/arm64/v8
           push: true
           tags: quay.io/peridot/build-base:${{ env.tag }}
+      
+      - name: Build and push Build Base (Alkemist)
+        uses: docker/build-push-action@v2
+        with:
+          context: build-alkemist
+          platforms: linux/amd64,linux/arm64/v8
+          push: true
+          tags: quay.io/peridot/build-base-alkemist:${{ env.tag }}
