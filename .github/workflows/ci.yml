@@ -56,6 +56,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: build-alkemist
-          platforms: linux/amd64,linux/arm64/v8
+          platforms: linux/amd64
           push: true
           tags: quay.io/peridot/build-base-alkemist:${{ env.tag }}
