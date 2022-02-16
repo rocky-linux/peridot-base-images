@@ -59,3 +59,11 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: quay.io/peridot/build-base-alkemist:${{ env.tag }}
+      
+      - name: Build and push CI Base
+        uses: docker/build-push-action@v2
+        with:
+          context: ci
+          platforms: linux/amd64
+          push: true
+          tags: quay.io/peridot/build-base-alkemist:${{ env.tag }}
