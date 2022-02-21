@@ -66,4 +66,4 @@ jobs:
           context: ci
           platforms: linux/amd64
           push: true
-          tags: quay.io/peridot/build-base-alkemist:${{ env.tag }}
+          tags: quay.io/peridot/ci:${{ env.tag }}
