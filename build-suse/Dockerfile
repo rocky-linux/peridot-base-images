@@ -5,6 +5,6 @@ RUN dnf update -y && dnf install -y patterns-devel-base-devel_rpm_build createre
 RUN ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
 RUN dnf clean all
 RUN rm -rf /etc/yum.repos.d/*.repo
-RUN useradd mock && groupadd mock && usermod -a -G mock mock
+RUN useradd mock
 
 USER mock
