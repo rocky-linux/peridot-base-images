@@ -5,11 +5,11 @@ RUN dnf update -y && dnf install -y patterns-devel-base-devel_rpm_build createre
 RUN ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
 RUN dnf clean all
 RUN rm -rf /etc/yum.repos.d/*.repo
-RUN useradd mock && groupadd mock && usermod -a -G mock mock
-RUN chown -R mock:mock /etc/dnf && chown -R mock:mock /etc/rpm && chown -R mock:mock /etc/yum.repos.d
-RUN echo "mock ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN useradd mockbuild && groupadd mock && usermod -a -G mock mockbuild
+RUN chown -R mockbuild:mock /etc/dnf && chown -R mockbuild:mock /etc/rpm && chown -R mockbuild:mock /etc/yum.repos.d
+RUN echo "mockbuild ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-ADD --chown=mock:mock yum-sudo /usr/bin/yum-sudo
+ADD --chown=mockbuild:mock yum-sudo /usr/bin/yum-sudo
 RUN chmod +x /usr/bin/yum-sudo
 
-USER mock
+USER mockbuild
