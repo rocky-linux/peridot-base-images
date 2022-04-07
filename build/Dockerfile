@@ -33,7 +33,6 @@ RUN ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
 RUN dnf clean all
 RUN rm -rf /etc/yum.repos.d/*.repo
 RUN useradd mock
-RUN chown mock:mock /etc/dnf/dnf.conf
-RUN chown mock:mock /etc/yum.conf
+RUN chown mock:mock /etc/yum.conf && chown -R mock:mock /etc/dnf && chown -R mock:mock /etc/rpm
 
 USER mock
