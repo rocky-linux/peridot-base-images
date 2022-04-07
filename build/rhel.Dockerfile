@@ -27,12 +27,17 @@ RUN dnf update -y && dnf install -y \
     xz \
     dnf-plugins-core \
     createrepo_c \
-    rpm-sign
+    rpm-sign \
+    sudo
 
 RUN ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
 RUN dnf clean all
 RUN rm -rf /etc/yum.repos.d/*.repo
 RUN useradd mock
 RUN chown mock:mock /etc/yum.conf && chown -R mock:mock /etc/dnf && chown -R mock:mock /etc/rpm && chown -R mock:mock /etc/yum.repos.d
+RUN echo "mock ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+ADD --chown=mock:mock yum-sudo /usr/bin/yum-sudo
+RUN chmod +x /usr/bin/yum-sudo
 
 USER mock
