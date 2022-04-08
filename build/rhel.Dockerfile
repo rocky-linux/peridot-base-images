@@ -33,7 +33,7 @@ RUN dnf update -y && dnf install -y \
 RUN ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
 RUN dnf clean all
 RUN rm -rf /etc/yum.repos.d/*.repo
-RUN useradd mockbuild && groupadd mock && usermod -a -G mock mockbuild
+RUN useradd -m mockbuild && groupadd mock && usermod -a -G mock mockbuild
 RUN chown mockbuild:mock /etc/yum.conf && chown -R mockbuild:mock /etc/dnf && chown -R mockbuild:mock /etc/rpm && chown -R mockbuild:mock /etc/yum.repos.d
 RUN echo "mockbuild ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
