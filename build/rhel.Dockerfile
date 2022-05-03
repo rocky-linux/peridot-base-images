@@ -1,6 +1,8 @@
 FROM quay.io/centos/centos:stream9
 
-RUN dnf update -y && dnf install -y \
+RUN dnf update -y && dnf install -y epel-release
+
+RUN dnf install -y \
     bash \
     bzip2 \
     cpio \
@@ -28,7 +30,8 @@ RUN dnf update -y && dnf install -y \
     dnf-plugins-core \
     createrepo_c \
     rpm-sign \
-    sudo
+    sudo \
+    mock
 
 RUN ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
 RUN dnf clean all
