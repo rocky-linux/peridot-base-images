@@ -38,6 +38,7 @@ RUN ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
 RUN dnf clean all
 RUN rm -rf /etc/yum.repos.d/*.repo
 RUN useradd -o -d /var/peridot -u 1002 peridotbuilder && usermod -a -G mock peridotbuilder
+RUN chown peridotbuilder:mock /etc/yum.conf && chown -R peridotbuilder:mock /etc/dnf && chown -R peridotbuilder:mock /etc/rpm && chown -R peridotbuilder:mock /etc/yum.repos.d
 
 ENV USER=1002
 USER 1002
