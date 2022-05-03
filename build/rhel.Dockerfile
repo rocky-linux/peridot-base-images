@@ -17,6 +17,7 @@ RUN dnf install -y \
     info \
     make \
     patch \
+    python3 \
     redhat-rpm-config \
     rpm-build \
     scl-utils-build \
@@ -36,11 +37,7 @@ RUN dnf install -y \
 RUN ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
 RUN dnf clean all
 RUN rm -rf /etc/yum.repos.d/*.repo
-RUN useradd -o -d /var/peridot -u 1000 mockbuild && usermod -a -G mock mockbuild
-RUN chown mockbuild:mock /etc/yum.conf && chown -R mockbuild:mock /etc/dnf && chown -R mockbuild:mock /etc/rpm && chown -R mockbuild:mock /etc/yum.repos.d
-RUN echo "mockbuild ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN useradd -o -d /var/peridot -u 1002 peridotbuilder && usermod -a -G mock peridotbuilder
 
-ADD --chown=mockbuild:mock yum-sudo /usr/bin/yum-sudo
-RUN chmod +x /usr/bin/yum-sudo
-
-USER mockbuild
+ENV USER=1002
+USER 1002
