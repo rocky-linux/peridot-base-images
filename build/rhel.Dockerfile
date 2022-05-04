@@ -1,5 +1,11 @@
 FROM quay.io/centos/centos:stream9
 
+ADD get_arch /get_arch
+
+ENV TINI_VERSION v0.19.0
+RUN curl -o /tini -L "https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-$(/get_arch)"
+RUN chmod +x /tini
+
 RUN dnf update -y && dnf install -y epel-release
 
 RUN dnf install -y \
@@ -42,3 +48,5 @@ RUN chown peridotbuilder:mock /etc/yum.conf && chown -R peridotbuilder:mock /etc
 
 ENV USER=1002
 USER 1002
+
+ENTRYPOINT ["/tini", "--"]
