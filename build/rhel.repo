@@ -1,0 +1,29 @@
+[baseos]
+name=CentOS Stream $releasever - BaseOS
+baseurl=http://mirror.stream.centos.org/9-stream/BaseOS/$arch/os
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+gpgcheck=1
+repo_gpgcheck=0
+metadata_expire=6h
+countme=1
+enabled=1
+
+[appstream]
+name=CentOS Stream $releasever - AppStream
+baseurl=http://mirror.stream.centos.org/9-stream/AppStream/$arch/os
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+gpgcheck=1
+repo_gpgcheck=0
+metadata_expire=6h
+countme=1
+enabled=1
+
+[extras-common]
+name=CentOS Stream $releasever - Extras packages
+baseurl=http://mirror.stream.centos.org/SIGs/9-stream/extras/$arch/extras-common
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Extras-SHA512
+gpgcheck=1
+repo_gpgcheck=0
+metadata_expire=6h
+countme=1
+enabled=1

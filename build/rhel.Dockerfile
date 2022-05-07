@@ -6,6 +6,9 @@ ENV TINI_VERSION v0.19.0
 RUN curl -o /tini -L "https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-$(/get_arch)"
 RUN chmod +x /tini
 
+RUN rm -rf /etc/yum.repos.d/*.repo
+ADD rhel.repo /etc/yum.repos.d/rhel.repo
+
 RUN dnf update -y && dnf install -y epel-release
 
 RUN dnf install -y \
