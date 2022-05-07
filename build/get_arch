@@ -7,6 +7,6 @@ case "$(uname -m)" in
         echo -n "arm64"
         ;;
     *)
-        echo -n "amd64"
+        echo -n "$(uname -m)"
         ;;
 esac
