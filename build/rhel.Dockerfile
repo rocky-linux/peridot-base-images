@@ -7,11 +7,10 @@ RUN curl -o /tini -L "https://github.com/krallin/tini/releases/download/${TINI_V
 RUN chmod +x /tini
 
 RUN rm -rf /etc/yum.repos.d/*.repo
+ADD epelkey.gpg /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-9
 ADD rhel.repo /etc/yum.repos.d/rhel.repo
 
-RUN dnf update -y && dnf install -y epel-release
-
-RUN dnf install -y \
+RUN dnf update -y && dnf install -y \
     bash \
     bzip2 \
     cpio \
