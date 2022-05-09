@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+ARCH="$(/get_arch)"
+case "$ARCH" in
+    amd64 | arm64)
+        curl -L "https://github.com/golang-migrate/migrate/releases/download/v4.14.1/migrate.linux-$ARCH.tar.gz" | tar xvz
+        mv "./migrate.linux-$ARCH" /usr/bin/migrate
+        exit 0
+        ;;
+    *)
+        exit 0
+        ;;
+esac
