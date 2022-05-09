@@ -1,4 +1,4 @@
-FROM quay.io/rockylinux/rockylinux:8.5
+FROM quay.io/centos/centos:stream9
 USER 0
 
 ADD get_arch /get_arch
