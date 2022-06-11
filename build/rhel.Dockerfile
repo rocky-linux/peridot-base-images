@@ -6,7 +6,7 @@ ENV TINI_VERSION v0.19.0
 RUN curl -o /tini -L "https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-$(/get_arch)"
 RUN chmod +x /tini
 
-RUN rm -rf /etc/yum.repos.d/*.repo
+RUN rm -rf /etc/yum.repos.d/*.repo /get_arch
 ADD epelkey.gpg /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-9
 ADD rhel.repo /etc/yum.repos.d/rhel.repo
 
