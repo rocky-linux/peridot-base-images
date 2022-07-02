@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+ARCH="$(/get_arch)"
+curl -L "https://get.helm.sh/helm-v3.9.0-linux-$ARCH.tar.gz" | tar xvz && mv "linux-$ARCH/helm" "$HOME/bin/helm" && rm -rf "linux-$ARCH"
