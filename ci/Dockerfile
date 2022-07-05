@@ -2,7 +2,7 @@ FROM quay.io/rockylinux/rockylinux:8.5
 USER 0
 
 RUN dnf update -y
-RUN dnf install -y python3 python3-devel git
+RUN dnf install -y python3 python3-devel git java-11-openjdk
 RUN dnf group install -y "Development Tools"
 
 # Create necessary dirs
