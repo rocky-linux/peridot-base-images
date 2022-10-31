@@ -1,8 +1,9 @@
+# We're running dnf update so this upgrades to the latest version of Rocky
 FROM quay.io/rockylinux/rockylinux:8.5
 USER 0
 
 RUN dnf update -y
-RUN dnf install -y python3 python3-devel git java-11-openjdk-devel
+RUN dnf install -y --enablerepo=ha python3 python3-devel git java-11-openjdk-devel awscli
 RUN dnf group install -y "Development Tools"
 
 # Create necessary dirs
@@ -17,8 +18,10 @@ RUN bash $HOME/bazel.sh --user && rm $HOME/bazel.sh
 
 ADD get_arch /get_arch
 ADD fetch_helm /fetch_helm
+ADD fetch_kubectl /fetch_kubectl
 RUN /fetch_helm
-RUN rm /fetch_helm /get_arch
+RUN /fetch_kubectl
+RUN rm /fetch_helm /get_arch /fetch_kubectl
 
 # PATH configuration
 ENV PATH "$PATH:$HOME/bin"
