@@ -1,4 +1,4 @@
-FROM quay.io/centos/centos:stream9
+FROM rockylinux/rockylinux:9
 
 ADD get_arch /get_arch
 
