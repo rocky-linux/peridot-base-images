@@ -13,7 +13,7 @@ ENV HOME /root
 
 RUN mkdir -p "$HOME/bin"
 
-RUN curl -o $HOME/bazel.sh -L https://github.com/bazelbuild/bazel/releases/download/5.0.0/bazel-5.0.0-installer-linux-x86_64.sh
+RUN curl -o $HOME/bazel.sh -L https://github.com/bazelbuild/bazel/releases/download/5.4.1/bazel-5.4.1-installer-linux-x86_64.sh
 RUN bash $HOME/bazel.sh --user && rm $HOME/bazel.sh
 
 ADD get_arch /get_arch
