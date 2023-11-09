@@ -1,4 +1,4 @@
-FROM quay.io/rockylinux/rockylinux:8.5
+FROM rockylinux:9
 
 RUN dnf update -y && dnf clean all
 

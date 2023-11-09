@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:9
+FROM rockylinux:9
 
 ADD get_arch /get_arch
 
