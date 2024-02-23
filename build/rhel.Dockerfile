@@ -42,7 +42,8 @@ RUN dnf update -y && dnf install -y \
     createrepo_c \
     rpm-sign \
     sudo \
-    mock
+    mock \
+    mock-rpmautospec
 
 RUN ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
 RUN dnf clean all
